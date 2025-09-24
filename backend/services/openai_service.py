@@ -1,16 +1,18 @@
 """
-OpenAI Service - Wrapper for OpenAI API calls
-Consolidates client creation, sane defaults, and light resilience.
+OpenAI Service - Now powered by Kamiwaza SDK for local model deployment
+Provides OpenAI-compatible interface using Kamiwaza local models
 """
 import os
 import logging
-from typing import Optional
-from openai import AsyncOpenAI, OpenAI
+from typing import Optional, List, Dict, Any
+import asyncio
+from .kamiwaza_service import get_kamiwaza_service, KamiwazaService
 
 logger = logging.getLogger(__name__)
 
 
-class GPT5CircuitBreaker:
+class ModelCircuitBreaker:
+    """Circuit breaker for model failures."""
     def __init__(self, threshold: int = 3, cooldown: float = 300.0):
         self.threshold = threshold
         self.cooldown = cooldown
@@ -38,56 +40,137 @@ class GPT5CircuitBreaker:
         return self.failures == 0 or self.should_allow()
 
 
-CIRCUIT_BREAKER = GPT5CircuitBreaker()
+CIRCUIT_BREAKER = ModelCircuitBreaker()
 
 
 class OpenAIService:
-    """Shared OpenAI async service with sensible defaults and retries.
+    """OpenAI-compatible service now powered by Kamiwaza for local model deployment.
 
-    Fixes the missing `model` attribute bug and centralizes defaults for
-    model selection, timeouts, streaming, and fallback model.
+    This class maintains the same interface as the original OpenAI service
+    but routes all calls through Kamiwaza SDK to use locally deployed models.
     """
 
-    # Module-level shared client to reduce socket exhaustion
-    _shared_client: Optional[AsyncOpenAI] = None
-    _shared_sync_client: Optional[OpenAI] = None
+    # Shared Kamiwaza service instance
+    _kamiwaza_service: Optional[KamiwazaService] = None
+    _available_models: List[Dict[str, Any]] = []
+    _last_model_refresh: float = 0.0
 
     def __init__(self):
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            logger.warning("OPENAI_API_KEY not found in environment variables")
+        """Initialize with Kamiwaza service instead of OpenAI."""
+        # Get or create Kamiwaza service
+        if OpenAIService._kamiwaza_service is None:
+            OpenAIService._kamiwaza_service = get_kamiwaza_service()
+        self.kamiwaza = OpenAIService._kamiwaza_service
 
-        # Public attributes expected by agents
-        self.model = os.getenv("OPENAI_MODEL", "gpt-4o")
-        self.fallback_model = os.getenv("OPENAI_FALLBACK_MODEL", "gpt-4o-mini")
+        # Model configuration - now uses Kamiwaza models
+        self.model = os.getenv("KAMIWAZA_DEFAULT_MODEL", "llama3")
+        self.fallback_model = os.getenv("KAMIWAZA_FALLBACK_MODEL", "mistral")
+
+        # Legacy compatibility - map OpenAI model names to Kamiwaza equivalents
+        self._model_mapping = {
+            "gpt-5": self.model,  # Map GPT-5 to default Kamiwaza model
+            "gpt-5-mini": self.fallback_model,
+            "gpt-4o": self.model,
+            "gpt-4o-mini": self.fallback_model,
+            "gpt-4": self.model,
+            "gpt-3.5-turbo": self.fallback_model,
+        }
 
         # Config knobs
-        self.enable_streaming = os.getenv("OPENAI_STREAMING", "false").lower() == "true"
-        self.max_retries = int(os.getenv("OPENAI_MAX_RETRIES", "3"))
-        self.retry_delay = float(os.getenv("OPENAI_RETRY_DELAY", "5"))
+        self.enable_streaming = os.getenv("KAMIWAZA_STREAMING", "false").lower() == "true"
+        self.max_retries = int(os.getenv("KAMIWAZA_MAX_RETRIES", "3"))
+        self.retry_delay = float(os.getenv("KAMIWAZA_RETRY_DELAY", "5"))
 
-        # Timeout: default to 180s unless overridden
-        timeout_env = float(os.getenv("OPENAI_TIMEOUT", "180"))
+        # Create OpenAI-compatible clients for both async and sync
+        try:
+            self.client = self.kamiwaza.get_openai_client(self.model)
+            self.sync_client = self.kamiwaza.get_openai_client(self.model)
+            logger.info(f"Kamiwaza-powered OpenAI service initialized with model: {self.model}")
+        except Exception as e:
+            logger.warning(f"Failed to initialize default model {self.model}, will select on-demand: {e}")
+            self.client = None
+            self.sync_client = None
 
-        # Create or reuse shared client
-        if OpenAIService._shared_client is None:
-            OpenAIService._shared_client = AsyncOpenAI(api_key=api_key, timeout=timeout_env)
-        self.client = OpenAIService._shared_client
+        # Refresh available models on init
+        asyncio.create_task(self._refresh_models())
 
-        if OpenAIService._shared_sync_client is None:
-            OpenAIService._shared_sync_client = OpenAI(api_key=api_key, timeout=timeout_env)
-        self.sync_client = OpenAIService._shared_sync_client
+    async def _refresh_models(self) -> None:
+        """Refresh the list of available models from Kamiwaza."""
+        import time
+        try:
+            current_time = time.time()
+            # Only refresh if more than 60 seconds have passed
+            if current_time - OpenAIService._last_model_refresh > 60:
+                OpenAIService._available_models = await self.kamiwaza.list_models()
+                OpenAIService._last_model_refresh = current_time
+                logger.info(f"Refreshed model list: {len(OpenAIService._available_models)} models available")
+
+                # Auto-select default model if not set
+                if not self.model and OpenAIService._available_models:
+                    self.model = OpenAIService._available_models[0]["name"]
+                    logger.info(f"Auto-selected model: {self.model}")
+        except Exception as e:
+            logger.error(f"Failed to refresh model list: {e}")
+
+    def _map_model_name(self, model_name: str) -> str:
+        """Map OpenAI model names to Kamiwaza model names.
+
+        Args:
+            model_name: Original model name (possibly OpenAI format)
+
+        Returns:
+            Mapped Kamiwaza model name
+        """
+        # Check explicit mapping
+        if model_name in self._model_mapping:
+            mapped = self._model_mapping[model_name]
+            logger.debug(f"Mapped model {model_name} -> {mapped}")
+            return mapped
+
+        # Check if it's already a valid Kamiwaza model
+        for model in OpenAIService._available_models:
+            if model["name"] == model_name:
+                return model_name
+
+        # Default to the configured default model
+        logger.warning(f"Unknown model {model_name}, using default: {self.model}")
+        return self.model
 
     def _calculate_timeout(self, tokens: int, model: str, reasoning_effort: Optional[str]) -> float:
-        """Heuristic timeout calculation with 600s cap.
-
-        Aligns with recommendations to scale by model and effort.
-        """
-        base = 120.0 if "gpt-5" in (model or "").lower() else 30.0
+        """Calculate timeout for request (kept for compatibility)."""
+        base = 120.0 if "llama" in (model or "").lower() else 30.0
         effort_multiplier = {"low": 1.0, "medium": 2.0, "high": 4.0}.get((reasoning_effort or "medium").lower(), 2.0)
-        # +1s per 100 tokens as a small linear component
         dynamic = base * effort_multiplier + (max(tokens or 0, 0) / 100.0)
         return min(dynamic, 600.0)
+
+    async def list_available_models(self) -> List[Dict[str, Any]]:
+        """List all available models from Kamiwaza deployment.
+
+        Returns:
+            List of available models with their details
+        """
+        await self._refresh_models()
+        return OpenAIService._available_models
+
+    async def select_model(self, model_name: Optional[str] = None, capability: Optional[str] = None) -> str:
+        """Select a model by name or capability.
+
+        Args:
+            model_name: Specific model name to use
+            capability: Type of capability needed (e.g., 'chat', 'completion', 'embedding')
+
+        Returns:
+            Selected model name
+        """
+        if model_name:
+            return self._map_model_name(model_name)
+
+        if capability:
+            selected = await self.kamiwaza.get_model_by_capability(capability)
+            if selected:
+                return selected
+
+        return self.model
 
     async def get_completion(
         self,
@@ -97,29 +180,31 @@ class OpenAIService:
         max_tokens: Optional[int] = None,
         reasoning_effort: Optional[str] = None,
     ) -> str:
-        """Get a completion from OpenAI with light retry and optional streaming.
+        """Get a completion from Kamiwaza models with OpenAI-compatible interface.
 
-        - Uses `self.model` by default
-        - Caps tokens by env MAX_COMPLETION_TOKENS (default 16000)
-        - Applies heuristic timeout when possible (client has a hard cap)
+        Args:
+            prompt: The prompt to send to the model
+            model: Model name (will be mapped to Kamiwaza model)
+            temperature: Sampling temperature
+            max_tokens: Maximum tokens to generate
+            reasoning_effort: Effort level (kept for compatibility)
+
+        Returns:
+            Generated text response
         """
-        chosen_model = model or self.model
-        # Circuit breaker: avoid GPT-5 if tripped
-        if "gpt-5" in chosen_model.lower() and not CIRCUIT_BREAKER.should_allow():
-            logger.warning("GPT-5 circuit open; using fallback model instead")
+        # Map model name to Kamiwaza equivalent
+        chosen_model = self._map_model_name(model or self.model)
+
+        # Circuit breaker check
+        if not CIRCUIT_BREAKER.should_allow():
+            logger.warning(f"Circuit breaker open for model {chosen_model}; using fallback")
             chosen_model = self.fallback_model
-        # Respect env cap
+
+        # Respect token cap
         env_cap = int(os.getenv("MAX_COMPLETION_TOKENS", "16000"))
-        token_param_value = None
-        if max_tokens is not None:
-            token_param_value = min(max_tokens, env_cap)
-        else:
-            token_param_value = env_cap
+        token_param_value = min(max_tokens or env_cap, env_cap)
 
-        # Build params according to model family
-        is_gpt5 = "gpt-5" in chosen_model.lower()
-        token_param_name = "max_completion_tokens" if (is_gpt5 or "gpt-4" in chosen_model.lower()) else "max_tokens"
-
+        # Build request parameters
         params = {
             "model": chosen_model,
             "messages": [
@@ -127,74 +212,75 @@ class OpenAIService:
                 {"role": "user", "content": prompt},
             ],
             "temperature": temperature,
-            token_param_name: token_param_value,
+            "max_tokens": token_param_value,
         }
 
-        if is_gpt5:
-            # Default to medium unless caller overrides
-            params["reasoning_effort"] = (reasoning_effort or os.getenv("GPT5_REASONING_EFFORT", "medium"))
+        # Get OpenAI-compatible client for the selected model
+        try:
+            client = self.kamiwaza.get_openai_client(chosen_model)
+        except Exception as e:
+            logger.error(f"Failed to get client for model {chosen_model}: {e}")
+            # Try fallback model
+            client = self.kamiwaza.get_openai_client(self.fallback_model)
+            params["model"] = self.fallback_model
+            chosen_model = self.fallback_model
 
-        # Heuristic timeout (documented; client still enforces its own)
-        _ = self._calculate_timeout(tokens=token_param_value or 0, model=chosen_model, reasoning_effort=params.get("reasoning_effort"))
-
-        # Try request with small backoff and fallback model on last attempt
+        # Retry logic with backoff
         attempt = 0
         last_err = None
+
         while attempt < max(1, self.max_retries):
             try:
-                # Streaming optional (only if enabled and supported)
+                # Try streaming if enabled
                 if self.enable_streaming:
                     try:
-                        stream = await self.client.chat.completions.create(
+                        stream = await client.chat.completions.create(
                             **{**params, "stream": True}
                         )
-                        # Some SDKs return an async iterator, others a wrapper – handle conservatively
                         chunks = []
-                        async for chunk in stream:  # type: ignore
+                        async for chunk in stream:
                             delta = getattr(getattr(chunk.choices[0], "delta", {}), "content", None)
                             if delta:
                                 chunks.append(delta)
-                        # Streaming completed successfully
-                        if "gpt-5" in chosen_model.lower():
-                            CIRCUIT_BREAKER.record_success()
+                        CIRCUIT_BREAKER.record_success()
                         return "".join(chunks) if chunks else ""
                     except Exception as stream_err:
                         logger.info(f"Streaming failed, retrying non-streaming: {stream_err}")
-                        # fall through to non-streaming request
 
-                response = await self.client.chat.completions.create(**params)
-                if "gpt-5" in chosen_model.lower():
-                    CIRCUIT_BREAKER.record_success()
+                # Non-streaming request
+                response = await client.chat.completions.create(**params)
+                CIRCUIT_BREAKER.record_success()
                 return response.choices[0].message.content
+
             except Exception as e:
                 last_err = e
-                # Update circuit breaker on GPT-5 failures
-                if "gpt-5" in chosen_model.lower():
-                    CIRCUIT_BREAKER.record_failure()
+                CIRCUIT_BREAKER.record_failure()
                 attempt += 1
-                # On last attempt, try fallback model
+
+                # Try fallback model on last attempt
                 if attempt >= self.max_retries and chosen_model != self.fallback_model:
-                    logger.warning(f"Primary model failed; retrying with fallback model {self.fallback_model}: {e}")
-                    params["model"] = self.fallback_model
-                    chosen_model = self.fallback_model
-                    # reset attempt window for fallback model (single try)
+                    logger.warning(f"Model {chosen_model} failed; trying fallback {self.fallback_model}: {e}")
                     try:
-                        response = await self.client.chat.completions.create(**params)
-                        # mark healthy if fallback works (breaker pertains to gpt-5 only)
+                        fallback_client = self.kamiwaza.get_openai_client(self.fallback_model)
+                        params["model"] = self.fallback_model
+                        response = await fallback_client.chat.completions.create(**params)
                         return response.choices[0].message.content
                     except Exception as e2:
                         last_err = e2
                         break
-                # basic backoff delay
-                try:
-                    import asyncio as _asyncio
-                    await _asyncio.sleep(self.retry_delay)
-                except Exception:
-                    pass
 
-        # Success path would have early returned; if we used GPT-5 and got here with no exception raised above,
-        # the breaker remains as previously set. If a GPT-5 attempt succeeded earlier, we should mark success.
-        # As we only reach here on failure, nothing to reset. Success calls should call record_success explicitly.
+                # Backoff delay
+                await asyncio.sleep(self.retry_delay)
 
-        logger.error(f"Error getting OpenAI completion: {last_err}")
-        return f"Unable to generate response at this time. Error: {str(last_err)}"
+        logger.error(f"Error getting completion from Kamiwaza: {last_err}")
+        return f"Unable to generate response. Error: {str(last_err)}"
+
+    async def health_check(self) -> Dict[str, Any]:
+        """Check health of Kamiwaza connection and models.
+
+        Returns:
+            Health status information
+        """
+        health_info = await self.kamiwaza.health_check()
+        health_info["circuit_breaker_healthy"] = CIRCUIT_BREAKER.is_healthy()
+        return health_info

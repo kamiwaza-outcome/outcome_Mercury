@@ -675,6 +675,63 @@ async def health_check():
         "checks": checks,
     }
 
+# Kamiwaza Model Management Endpoints
+@app.get("/api/models")
+async def list_available_models():
+    """List all available models from Kamiwaza deployment."""
+    try:
+        oai_service = OpenAIService()
+        models = await oai_service.list_available_models()
+        return {
+            "models": models,
+            "default_model": oai_service.model,
+            "fallback_model": oai_service.fallback_model,
+            "total": len(models)
+        }
+    except Exception as e:
+        logger.error(f"Failed to list models: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to list models: {str(e)}")
+
+@app.post("/api/models/select")
+async def select_model(request: Dict[str, Any]):
+    """Select a model for the current session."""
+    try:
+        model_name = request.get("model_name")
+        capability = request.get("capability")
+
+        if not model_name and not capability:
+            raise ValueError("Either model_name or capability must be provided")
+
+        oai_service = OpenAIService()
+        selected = await oai_service.select_model(model_name=model_name, capability=capability)
+
+        # Update the default model for this session
+        oai_service.model = selected
+
+        return {
+            "selected_model": selected,
+            "status": "success"
+        }
+    except Exception as e:
+        logger.error(f"Failed to select model: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to select model: {str(e)}")
+
+@app.get("/api/models/health")
+async def check_kamiwaza_health():
+    """Check health of Kamiwaza connection and models."""
+    try:
+        oai_service = OpenAIService()
+        health_info = await oai_service.health_check()
+        return health_info
+    except Exception as e:
+        logger.error(f"Kamiwaza health check failed: {e}")
+        return {
+            "healthy": False,
+            "message": f"Health check failed: {str(e)}",
+            "models_count": 0,
+            "models": []
+        }
+
 # Architecture Management Endpoints
 
 @app.post("/api/architecture/config")
