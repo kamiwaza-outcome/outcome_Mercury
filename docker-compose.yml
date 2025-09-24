@@ -1,0 +1,189 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mercury-frontend
+    ports:
+      - "3003:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8000
+      - NODE_ENV=production
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - mercury-network
+    restart: unless-stopped
+
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mercury-backend
+    ports:
+      - "8003:8000"
+    environment:
+      # Kamiwaza Configuration
+      - KAMIWAZA_ENDPOINT=${KAMIWAZA_ENDPOINT:-http://kamiwaza:7777/api/}
+      - KAMIWAZA_VERIFY_SSL=${KAMIWAZA_VERIFY_SSL:-false}
+      - KAMIWAZA_DEFAULT_MODEL=${KAMIWAZA_DEFAULT_MODEL:-llama3}
+      - KAMIWAZA_FALLBACK_MODEL=${KAMIWAZA_FALLBACK_MODEL:-mistral}
+      - KAMIWAZA_STREAMING=${KAMIWAZA_STREAMING:-false}
+      - KAMIWAZA_MAX_RETRIES=${KAMIWAZA_MAX_RETRIES:-3}
+      - KAMIWAZA_RETRY_DELAY=${KAMIWAZA_RETRY_DELAY:-5}
+
+      # Vector Service Configuration
+      - KAMIWAZA_DEFAULT_COLLECTION=${KAMIWAZA_DEFAULT_COLLECTION:-kamiwaza_knowledge_v2}
+      - KAMIWAZA_EMBEDDING_MODEL=${KAMIWAZA_EMBEDDING_MODEL:-}
+      - KAMIWAZA_MILVUS_HOST=${KAMIWAZA_MILVUS_HOST:-milvus}
+      - KAMIWAZA_MILVUS_PORT=${KAMIWAZA_MILVUS_PORT:-19530}
+
+      # Milvus Configuration
+      - MILVUS_HOST=${MILVUS_HOST:-milvus}
+      - MILVUS_PORT=${MILVUS_PORT:-19530}
+
+      # Google Services (Optional)
+      - GOOGLE_SERVICE_ACCOUNT_FILE=${GOOGLE_SERVICE_ACCOUNT_FILE:-}
+      - OUTPUT_FOLDER_ID=${OUTPUT_FOLDER_ID:-}
+      - TEMPLATE_FOLDER_ID=${TEMPLATE_FOLDER_ID:-}
+      - TRACKING_SHEET_ID=${TRACKING_SHEET_ID:-}
+
+      # SAM.gov API (Optional)
+      - SAM_API_KEY=${SAM_API_KEY:-}
+    volumes:
+      - backend-data:/app/data
+      - ./backend/credentials:/app/credentials:ro
+    depends_on:
+      milvus:
+        condition: service_healthy
+      kamiwaza:
+        condition: service_started
+    networks:
+      - mercury-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Milvus Vector Database
+  milvus:
+    image: milvusdb/milvus:v2.3.3
+    container_name: mercury-milvus
+    command: milvus run standalone
+    environment:
+      - ETCD_ENDPOINTS=etcd:2379
+      - MINIO_ADDRESS=minio:9000
+      - MINIO_ACCESS_KEY_ID=minioadmin
+      - MINIO_SECRET_ACCESS_KEY=minioadmin
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    volumes:
+      - milvus-data:/var/lib/milvus
+    depends_on:
+      - etcd
+      - minio
+    networks:
+      - mercury-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # Etcd for Milvus
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.5
+    container_name: mercury-etcd
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+      - ALLOW_NONE_AUTHENTICATION=yes
+    volumes:
+      - etcd-data:/etcd
+    command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    networks:
+      - mercury-network
+    restart: unless-stopped
+
+  # MinIO for Milvus
+  minio:
+    image: minio/minio:RELEASE.2023-03-20T20-16-18Z
+    container_name: mercury-minio
+    environment:
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+    ports:
+      - "9001:9001"
+      - "9000:9000"
+    volumes:
+      - minio-data:/minio_data
+    command: minio server /minio_data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+      - mercury-network
+    restart: unless-stopped
+
+  # Kamiwaza AI Platform (Optional - if running in Docker)
+  kamiwaza:
+    image: kamiwaza/kamiwaza:latest
+    container_name: mercury-kamiwaza
+    ports:
+      - "7777:7777"
+      - "61100-61200:61100-61200"
+    environment:
+      - KAMIWAZA_ENV=${KAMIWAZA_ENV:-production}
+      - KAMIWAZA_API_PORT=7777
+    volumes:
+      - kamiwaza-models:/models
+      - kamiwaza-data:/data
+    networks:
+      - mercury-network
+    restart: unless-stopped
+    # Note: Replace with actual Kamiwaza image when available
+    # For now, this assumes Kamiwaza is running on host
+
+  # Redis Cache (Optional)
+  redis:
+    image: redis:7-alpine
+    container_name: mercury-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - mercury-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  mercury-network:
+    driver: bridge
+
+volumes:
+  backend-data:
+  milvus-data:
+  etcd-data:
+  minio-data:
+  kamiwaza-models:
+  kamiwaza-data:
+  redis-data:

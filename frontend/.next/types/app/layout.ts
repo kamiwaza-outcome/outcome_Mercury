@@ -1,4 +1,4 @@
-// File: /Users/finnegannorris/code/Mercury_RFP/frontend/app/layout.tsx
+// File: /Users/finnegannorris/code/Mercury_Blue_ALLY/frontend/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

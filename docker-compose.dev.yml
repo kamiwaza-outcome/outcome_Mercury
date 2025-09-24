@@ -1,0 +1,35 @@
+version: '3.8'
+
+# Development configuration (extends docker-compose.yml)
+# Use: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    command: uvicorn main_simple:app --host 0.0.0.0 --port 8000 --reload
+
+  # In dev, assume Kamiwaza runs on host
+  kamiwaza:
+    # Override to not use the container
+    image: alpine:latest
+    command: echo "Kamiwaza running on host machine"
+    restart: "no"
