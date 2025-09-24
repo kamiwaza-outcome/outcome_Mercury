@@ -1,0 +1,54 @@
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# Credentials and secrets
+credentials/
+service-account.json
+*.key
+*.pem
+*.p12
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+milvus_rfp.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Local files
+*.local

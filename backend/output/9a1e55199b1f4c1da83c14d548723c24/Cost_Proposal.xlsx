@@ -1,0 +1,125 @@
+Below is ready-to-paste content for Cost_Proposal.xlsx. It provides a fixed-price, BHD-denominated, LPTA-optimized cost breakdown with VAT shown separately. Create the following worksheets and paste the corresponding CSV blocks into each sheet.
+
+Worksheet: Summary_&_CLINs
+CLIN,Title,Description,Unit,Qty,Unit Price (BHD),Amount (BHD),VAT Applicable (Y/N),Notes
+0001,Integrated Multimedia Campaign Services,"All labor, research, strategy, creative, production ODCs, analytics, PM, reporting, Independence Day display (services and non-media ODCs).",Lot,1,92676,92676,Y,"Firm Fixed Price; includes all overhead, insurance (incl. DBA), equipment, travel, warehousing, bilingual support; excludes VAT."
+0002,Media Placements (Pass-Through, 0% Markup),"Paid media across digital, OOH, radio, print, influencers/sponsorships; bought under COR-approved plans; no agency markup.",Lot,1,90000,90000,Y,"Pass-through at net vendor cost; we obtain performance guarantees and make-goods at no charge."
+SUBT,"Subtotal (Excl. VAT)",,,,"",182676,,Sum of CLIN 0001 and CLIN 0002; evaluated price
+VAT,"Estimated VAT (10%) — NOT EVALUATED",,,,"",18268,,Shown for planning; actual VAT billed per local law and zero-rated/exemptions if applicable
+TOT,"Total Including Estimated VAT",,,,"",200944,,Informational total; evaluation excludes VAT
+
+Worksheet: WBS_Cost_Detail
+Task ID,Task Name,Cost Type,Role/Item,Unit,Qty,Rate (BHD),Amount (BHD),Planned Months,Notes
+1.1,Project Management & Governance,Labor,Project Manager (Bilingual),Hour,384,20,7680,M1–M12,"Lead, approvals, schedule, risk; monthly reporting oversight"
+1.2,Project Oversight,Labor,Account Director,Hour,144,35,5040,M1–M12,Executive liaison and quality gate
+1.3,Media Planning & Buying,Labor,Media Planner/Buyer,Hour,360,22,7920,M2–M11,Media strategy, negotiations, trafficking, post-buys
+1.4,Creative Leadership,Labor,Creative Director,Hour,128,30,3840,M2–M9,Concept, brand localization, CD reviews
+1.5,Design,Labor,Art Director,Hour,240,18,4320,M2–M9,Campaign key visuals, layouts, OOH adaptations
+1.6,Copy (English),Labor,Copywriter (EN),Hour,192,16,3072,M2–M9,Headlines, scripts, body copy (EN)
+1.7,Copy (Arabic),Labor,Copywriter (AR),Hour,240,16,3840,M2–M9,Headlines, scripts, body copy (AR)
+1.8,Social Management,Labor,Social Media Manager,Hour,288,15,4320,M3–M12,Channel calendars, posting, moderation
+1.9,Analytics & Reporting,Labor,Data Analyst,Hour,168,20,3360,M3–M12,Dashboards, monthly KPIs, post-buy analyses
+1.10,Video Production,Labor,Video Producer,Hour,192,22,4224,M3–M9,Field producing, vendor coordination
+1.11,Editing,Labor,Editor,Hour,240,20,4800,M3–M9,Edits, color, audio mix, versioning
+1.12,Motion Graphics,Labor,Motion Graphics Artist,Hour,144,22,3168,M4–M9,Animated supers, lower-thirds, slates
+1.13,Photography,Labor,Photographer,Hour,48,25,1200,M3–M8,Stills for OOH/social/press kits
+1.14,Field Production,Labor,Field Producer,Hour,48,20,960,M3–M8,Permits, call sheets, on-set coordination
+1.15,Production Coordination,Labor,Production Coordinator,Hour,128,14,1792,M3–M9,Logistics, bookings, releases
+1.16,Quality Assurance,Labor,QA Lead,Hour,120,24,2880,M2–M12,Brand compliance, accessibility, file checks
+1.17,Localization QA,Labor,Translator/Proofreader (AR<>EN),Hour,120,14,1680,M2–M12,Terminology, diacritics, cultural review
+1.18,Event Tech,Labor,Event Technical Lead,Hour,40,22,880,M11,On-site coordination for Independence Day display
+2.1,Focus Groups (Round 1),ODC,Facility/Recruit/Incentives/Moderation,Lot,1,1700,1700,M1,"20 participants, Arabic/English split; incentives included"
+2.2,Focus Groups (Round 2),ODC,Facility/Recruit/Incentives/Moderation,Lot,1,1700,1700,M2,"Validation of concepts/messaging; bilingual"
+2.3,Production ODCs,ODC,Equipment/Studio/Talent/Licenses/Permits,Lot,1,8000,8000,M3–M9,"Camera/lighting/studio, talent, music, subtitles, props, drone"
+2.4,Analytics & Tools,ODC,Social Listening + Dashboards + Hosting,Month,12,200,2400,M1–M12,Arabic/English listening + dashboard hosting
+2.5,Travel/Local Transport,ODC,Local transport & van rental,Month,12,150,1800,M1–M12,Local only; no international travel
+2.6,Insurance,ODC,DBA + GL + Equipment,Lot,1,2000,2000,M1,"DBA per DOSAR 652.228-71; GL and equipment rider"
+2.7,Printing/Collateral,ODC,Posters/Flyers/Signage,Lot,1,2000,2000,M10–M12,Event and campaign collateral
+2.8,Warehouse/Storage,ODC,Storage for materials/media,Month,12,50,600,M1–M12,Secure facility, climate-safe
+2.9,Independence Day Display (ODCs),ODC,LED wall/rigging/audio/lighting/logistics,Lot,1,7500,7500,M11,"3-day rental & crew for embassy celebration"
+3.1,Media — Digital,Media Spend,Social/Search/Video (Meta, X, YouTube, etc.),Lot,1,50000,50000,M4–M11,"Optimized to KPIs; brand safety enforced"
+3.2,Media — OOH,Media Spend,Mupi/Unipole/Digital Screens,Lot,1,20000,20000,M5–M10,Pole banners and high-traffic screens
+3.3,Media — Radio,Media Spend,Drive-time spots + promos,Lot,1,8000,8000,M5–M9,With added value promos where available
+3.4,Media — Print,Media Spend,Newspapers/Magazines,Lot,1,4000,4000,M5–M9,Audited circulation titles
+3.5,Media — Influencers/Sponsorships,Media Spend,Local creators/community events,Lot,1,4000,4000,M5–M9,Disclosed per policy; content approvals
+3.6,Media — Programmatic,Media Spend,Brand-safe placements,Lot,1,2000,2000,M6–M9,Whitelist inventory
+TOTAL,,,"",,,"",182676,,"=SUM Amounts; ties to Summary_&_CLINs subtotal"
+
+Worksheet: Staffing_Rates
+Role,Hourly Rate (BHD),Estimated Hours,Extended Amount (BHD),Notes
+Project Manager (Bilingual),20,384,7680,Fully burdened
+Account Director,35,144,5040,Fully burdened
+Media Planner/Buyer,22,360,7920,Fully burdened
+Creative Director,30,128,3840,Fully burdened
+Art Director,18,240,4320,Fully burdened
+Copywriter (EN),16,192,3072,Fully burdened
+Copywriter (AR),16,240,3840,Fully burdened
+Social Media Manager,15,288,4320,Fully burdened
+Data Analyst,20,168,3360,Fully burdened
+Video Producer,22,192,4224,Fully burdened
+Editor,20,240,4800,Fully burdened
+Motion Graphics Artist,22,144,3168,Fully burdened
+Photographer,25,48,1200,Fully burdened
+Field Producer,20,48,960,Fully burdened
+Production Coordinator,14,128,1792,Fully burdened
+QA Lead,24,120,2880,Fully burdened
+Translator/Proofreader (AR<>EN),14,120,1680,Fully burdened
+Event Technical Lead,22,40,880,Fully burdened
+TOTAL,,,,64976,Sum of Extended Amounts
+
+Worksheet: Media_Spend
+Channel,Flight (Months),Planned KPIs,Unit/Benchmark,Spend (BHD),Notes
+Digital (Social/Search/Video),Dec–Jul,Reach/CTR/Video Views,CPM-optimized,50000,"Meta, YouTube, X, Snapchat; Arabic/English; strict brand safety"
+OOH,Jan–Jun,Reach/GRPs,Market GRPs,20000,"High-traffic digital screens and static units; embassy approvals"
+Radio,Jan–May,Reach/Frequency,GRPs,8000,"Drive-time spots; negotiated promos/mentions"
+Print,Jan–May,Reach/Audited Circulation,Insertions,4000,"Tier-1 publications with audited circulation"
+Influencers/Sponsorships,Jan–May,Engagement/Content Views,Per deliverable,4000,"Pre-vetted creators; disclosure; content approvals"
+Programmatic,Feb–May,Reach/Viewability,CPM/Viewability,2000,"Whitelist; IAS/Moat where applicable"
+TOTAL,,,"",90000,"Pass-through at net cost; 0% markup"
+
+Worksheet: Monthly_Phasing
+Month,Description,Labor (BHD),Non-Media ODCs (BHD),Media Spend (BHD),Monthly Total (BHD),Notes
+M1 (Sep 2025),Mobilization & Research Start,5415,4100,0,9515,"Kickoff; DBA; focus group #1; tools live"
+M2 (Oct 2025),Research & Strategy,5415,2100,0,7515,"Focus group #2; strategy lock"
+M3 (Nov 2025),Creative/Production Prep,5415,1542,0,6957,"Creative dev; production bookings"
+M4 (Dec 2025),Launch Wave 1,5415,1543,11250,18208,"Launch digital; initial OOH"
+M5 (Jan 2026),Wave 2 Scale,5415,1543,13500,20458,"Add radio/print; optimize digital"
+M6 (Feb 2026),Optimization,5415,1543,13500,20458,"Always-on + creative refresh"
+M7 (Mar 2026),Sustain,5415,1543,13500,20458,"Post-buy analysis cycle 1"
+M8 (Apr 2026),Sustain,5415,1543,10800,17758,"OOH rotation; digital test/learn"
+M9 (May 2026),Sustain,5415,1543,10800,17758,"Community activations"
+M10 (Jun 2026),Pre-Event Build,5415,900,9000,15315,"Event creative; print run"
+M11 (Jul 2026),Independence Day Peak,5415,8900,7650,21965,"LED display; on-site ops"
+M12 (Aug 2026),Closeout & Transition,5411,900,0,6311,"Final reports; content handover"
+TOTAL,,64976,27700,90000,182676,"=SUM by column"
+
+Worksheet: VAT_Schedule
+Item/CLIN,Taxable Base (BHD),VAT Rate,Estimated VAT (BHD),Comment
+CLIN 0001 — Services & ODCs,92676,10%,9268,"Subject to VAT per Bahraini law unless exempt; US Mission exemptions honored if applicable"
+CLIN 0002 — Media Placements,90000,10%,9000,"VAT treatment per local law/vendor invoicing; billed as separate line"
+TOTAL,182676,,"18268","VAT not included in evaluated price; shown for planning"
+
+Worksheet: Assumptions_&_Terms
+Item,Detail
+Currency & Type,All prices are in Bahraini Dinars (BHD) and are Firm Fixed Price (FFP).
+Evaluation,LPTA basis; pricing is lean, with media pass-through at 0% markup.
+VAT,VAT is excluded from CLIN prices and shown separately; estimated at 10% and invoiced per Bahraini law and any diplomatic exemptions.
+Period of Performance,Assumed Sep 25, 2025 – Sep 25, 2026; launch Dec 2025; includes July 2026 Independence Day event.
+Invoicing & Payment,Monthly invoicing post-delivery/acceptance; NET 30 by EFT; no advance payments.
+Scope Inclusions,All labor, research (focus groups), bilingual creative, media planning/buying, production ODCs, analytics tools, reporting, event display ODCs, insurance (incl. DBA), local transport, storage.
+Make-Goods & Added Value,Performance guarantees and make-good placements are negotiated with media vendors at no additional cost to the Government; added-value secured where feasible.
+Local Presence,Delivery via Kamiwaza with an established Gulf-based partner; all local licenses/permits and insurances included.
+Data & IT,Analytics dashboards included; unclassified data only; security and privacy best practices observed.
+SCLS/ Labor Compliance,We will comply with applicable Service Contract Labor Standards as directed by the CO.
+Dependencies,Timely COR approvals (creative, media plans), brand asset availability, venue access for event setup.
+Change Management,Any scope changes beyond this proposal will be handled via written modification before work proceeds.
+Price Validity,Pricing is valid for 120 days from proposal submission.
+Exclusions,No international travel; no hardware purchases beyond listed rentals; customs/duties not anticipated for local rentals.
+
+Notes for the CO/COR (optional to keep in a hidden sheet or proposal notes)
+- CLIN structure aligns to SF-1449: CLIN 0001 covers all services and non-media ODCs; CLIN 0002 covers pass-through media.
+- Media plan is illustrative; final channel mix will be COR-approved and optimized monthly to meet KPIs.
+- All labor rates are fully burdened (inclusive of overhead and reasonable profit); no separate fee is added.
+- We will track all media invoices and provide post-buy analyses monthly, including reach, frequency, CPM, GRPs, and digital KPIs.
+
+If you’d like, I can also generate the SF-1449-compatible CLIN table in a separate sheet for direct insertion into your pricing volume PDF.

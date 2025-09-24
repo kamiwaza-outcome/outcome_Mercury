@@ -1,0 +1,156 @@
+Below is a complete, Section L/M-ready pricing workbook specification you can paste into Excel to create Cost_Proposal.xlsx. It provides a detailed, defensible cost breakdown structure with formulas and placeholders. Because the actual RFP content for SAM.gov notice_id 710637f47916457280ca93dbb73c2b41 is not yet available, this is a compliant template with example data and clear instructions on where to insert the real CLINs, periods of performance, and rates. Replace all example data with final inputs once you retrieve the solicitation and attachments.
+
+Instructions
+- Create a new Excel file named Cost_Proposal.xlsx.
+- Create sheets exactly as named below (case-sensitive). For each sheet, copy the corresponding CSV block (including the first header line) and paste into cell A1.
+- Do not finalize numbers or submit until RFP specifics are verified. All example numbers are placeholders to illustrate structure and formulas.
+
+SHEET: ReadMe
+CSV (paste starting A1)
+Field,Value
+Notice ID,710637f47916457280ca93dbb73c2b41
+Solicitation Type,UNKNOWN - confirm (RFP/RFQ/RFI)
+Solicitation Number,UNKNOWN - insert upon receipt
+Issuing Agency,UNKNOWN - insert upon receipt
+Contract Type,UNKNOWN - insert (FFP/T&M/CPFF/Hybrid)
+Set-Aside,UNKNOWN - insert (e.g., Small Business)
+NAICS,UNKNOWN
+Proposal Due Date,UNKNOWN - insert date/time/timezone
+Workbook Purpose,Price volume with detailed cost breakdown and traceability to CLINs and BOE
+Key Assumptions,See Assumptions_Risks sheet
+How to Use,"1) Update Indirect_Rates; 2) Enter Labor_Rates and escalation; 3) Build Staffing_Plan LOE; 4) Map WBS to CLINs in CLIN_Mapping; 5) Enter ODC_Travel and Subcontractors; 6) Validate roll-ups in CLIN_Detail and Summary_Price; 7) Complete SB_Participation; 8) Lock formulas; 9) Export Summary_Price to PDF if required."
+Kamiwaza Differentiators,"Rapid 2–4 week deployment reduces transition LOE; 24/7 US-based support CLIN lowers risk; AI acceleration framework increases productivity (apply productivity factors in BOE); Zero security incidents reduces risk reserves; Agile 2-week sprints align with incremental delivery; Cost-effective solutions target ~20% below industry rates (capture as discount line or competitive wrap-rate)."
+
+SHEET: Indirect_Rates
+CSV
+Parameter,Value,Notes
+Fringe_%_on_Direct_Labor,0.30,"Example 30%; replace with actual"
+Overhead_%_on_(DL+Fringe),0.50,"Example 50%"
+G&A_%_on_(Total_Cost_Base),0.12,"Example 12%"
+Fee_Profit_%,0.08,"Example 8%; confirm fee base per RFP/contract type"
+Annual_Labor_Escalation_%,0.03,"Comp escalation per year; align with BLS ECI or RFP"
+Material_Handling_%_on_Materials,0.02,"If applicable"
+Subcontractor_Handling_%_on_SubK,0.02,"If applicable"
+ODC_G&A_Applies,Yes,"Yes/No per accounting practice and RFP allowability"
+Fee_Base,Total_Cost_before_Fee,"Confirm whether fee applies to G&A or not; if not, change formulas in ODC/SubK"
+Periods,Base Year;Option Year 1;Option Year 2;Option Year 3;Option Year 4,"Adjust for actual PoP structure"
+
+SHEET: Labor_Rates
+CSV
+Labor Category,Work Location,Base_Wage_Y1,Annual_Labor_Escalation_%,Fringe_%,Overhead_%,G&A_%,Fee_%,Loaded_Rate_Y1,Loaded_Rate_Y2,Loaded_Rate_Y3,Loaded_Rate_Y4,Loaded_Rate_Y5
+Project Manager,Onsite,75,=Indirect_Rates!B6,=Indirect_Rates!B2,=Indirect_Rates!B3,=Indirect_Rates!B4,=Indirect_Rates!B5,=ROUND(((C2*(1+D2))*(1+E2)*(1+F2)*(1+G2))*(1+H2),2),=ROUND((((C2*(1+D2)^2))*(1+E2)*(1+F2)*(1+G2))*(1+H2),2),=ROUND((((C2*(1+D2)^3))*(1+E2)*(1+F2)*(1+G2))*(1+H2),2),=ROUND((((C2*(1+D2)^4))*(1+E2)*(1+F2)*(1+G2))*(1+H2),2),=ROUND((((C2*(1+D2)^5))*(1+E2)*(1+F2)*(1+G2))*(1+H2),2)
+Data Scientist,Hybrid,68,=Indirect_Rates!B6,=Indirect_Rates!B2,=Indirect_Rates!B3,=Indirect_Rates!B4,=Indirect_Rates!B5,=ROUND(((C3*(1+D3))*(1+E3)*(1+F3)*(1+G3))*(1+H3),2),=ROUND((((C3*(1+D3)^2))*(1+E3)*(1+F3)*(1+G3))*(1+H3),2),=ROUND((((C3*(1+D3)^3))*(1+E3)*(1+F3)*(1+G3))*(1+H3),2),=ROUND((((C3*(1+D3)^4))*(1+E3)*(1+F3)*(1+G3))*(1+H3),2),=ROUND((((C3*(1+D3)^5))*(1+E3)*(1+F3)*(1+G3))*(1+H3),2)
+Cloud Engineer,Remote,62,=Indirect_Rates!B6,=Indirect_Rates!B2,=Indirect_Rates!B3,=Indirect_Rates!B4,=Indirect_Rates!B5,=ROUND(((C4*(1+D4))*(1+E4)*(1+F4)*(1+G4))*(1+H4),2),=ROUND((((C4*(1+D4)^2))*(1+E4)*(1+F4)*(1+G4))*(1+H4),2),=ROUND((((C4*(1+D4)^3))*(1+E4)*(1+F4)*(1+G4))*(1+H4),2),=ROUND((((C4*(1+D4)^4))*(1+E4)*(1+F4)*(1+G4))*(1+H4),2),=ROUND((((C4*(1+D4)^5))*(1+E4)*(1+F4)*(1+G4))*(1+H4),2)
+QA Analyst,Remote,50,=Indirect_Rates!B6,=Indirect_Rates!B2,=Indirect_Rates!B3,=Indirect_Rates!B4,=Indirect_Rates!B5,=ROUND(((C5*(1+D5))*(1+E5)*(1+F5)*(1+G5))*(1+H5),2),=ROUND((((C5*(1+D5)^2))*(1+E5)*(1+F5)*(1+G5))*(1+H5),2),=ROUND((((C5*(1+D5)^3))*(1+E5)*(1+F5)*(1+G5))*(1+H5),2),=ROUND((((C5*(1+D5)^4))*(1+E5)*(1+F5)*(1+G5))*(1+H5),2),=ROUND((((C5*(1+D5)^5))*(1+E5)*(1+F5)*(1+G5))*(1+H5),2)
+
+SHEET: Staffing_Plan
+CSV
+WBS,Task Name,Labor Category,Key Personnel (Y/N),Base Year Hours,Option Year 1 Hours,Option Year 2 Hours,Option Year 3 Hours,Option Year 4 Hours,Notes
+1.1,Transition-In,Project Manager,Y,160,40,0,0,0,"Rapid deployment: 2–4 week transition; leverage accelerators"
+1.2,Data Ingestion & Pipelines,Data Scientist,N,480,960,960,960,960,"Assumes 2-week sprints; capacity-based LOE"
+1.3,Cloud Platform Ops,Cloud Engineer,N,640,960,960,960,960,"SRE coverage and automation"
+1.4,Quality & Test,QA Analyst,N,240,480,480,480,480,"Automated testing improves over time"
+
+SHEET: CLIN_Mapping
+CSV
+WBS,Task Name,Assigned CLIN,Period
+1.1,Transition-In,CLIN0001,Base Year
+1.2,Data Ingestion & Pipelines,CLIN0002,All Years
+1.3,Cloud Platform Ops,CLIN0003,All Years
+1.4,Quality & Test,CLIN0002,All Years
+
+SHEET: ODC_Travel
+CSV
+CLIN,Period,Item,Qty,Unit Cost,Escalation_%_per_Year,Material_Handling_%,G&A_%,Fee_%,Extended_Direct,Total_Burdened
+CLIN0001,Base Year,Project Kickoff Travel (CONUS),2,2500,0.02,=Indirect_Rates!B7,=Indirect_Rates!B4,=Indirect_Rates!B5,=D2*E2,=ROUND(I2*(1+F2)*(1+G2)*(1+H2),2)
+CLIN0002,Each Option Year,Software Licenses (if allowed),1,15000,0.03,=Indirect_Rates!B7,=Indirect_Rates!B4,=Indirect_Rates!B5,=D3*E3,=ROUND(I3*(1+F3)*(1+G3)*(1+H3),2)
+
+SHEET: Subcontractors
+CSV
+SubK Name,Small Biz Type,CLIN,Period,Model,Hours_or_Qty,Unit Rate_or_FFP,SubK_Direct,SubK_Handling_%,G&A_%,Fee_%,Total_Burdened
+ABC Analytics,SB,CLIN0002,Base Year,T&M,400,95,=F2*G2,=Indirect_Rates!B8,=Indirect_Rates!B4,=Indirect_Rates!B5,=ROUND(H2*(1+I2)*(1+J2)*(1+K2),2)
+XYZ Cloud,SDVOSB,CLIN0003,Each Option Year,FFP,1,120000,=F3*G3,=Indirect_Rates!B8,=Indirect_Rates!B4,=Indirect_Rates!B5,=ROUND(H3*(1+I3)*(1+J3)*(1+K3),2)
+
+SHEET: CLIN_Detail
+CSV
+CLIN,Period,Labor Category,Hours,Loaded Rate,Extended Labor,$ ODC/Travel,$ SubK,Total CLIN Line
+CLIN0001,Base Year,Project Manager,=SUMIFS(Staffing_Plan!E:E,Staffing_Plan!C:C,A2,Staffing_Plan!A:A,VLOOKUP(A2,CLIN_Mapping!C:D,2,FALSE)),=INDEX(Labor_Rates!I:I,MATCH(B2,Labor_Rates!A:A,0)),=D2*E2,=SUMIFS(ODC_Travel!K:K,ODC_Travel!A:A,A2,ODC_Travel!B:B,B2),=SUMIFS(Subcontractors!L:L,Subcontractors!C:C,A2,Subcontractors!D:D,B2),=F2+G2+H2
+CLIN0002,Base Year,Data Scientist,=SUM(Staffing_Plan!E3),=INDEX(Labor_Rates!I:I,MATCH(C3,Labor_Rates!A:A,0)),=D3*E3,=SUMIFS(ODC_Travel!K:K,ODC_Travel!A:A,A3,ODC_Travel!B:B,B3),=SUMIFS(Subcontractors!L:L,Subcontractors!C:C,A3,Subcontractors!D:D,B3),=F3+G3+H3
+CLIN0003,Base Year,Cloud Engineer,=SUM(Staffing_Plan!E4),=INDEX(Labor_Rates!I:I,MATCH(C4,Labor_Rates!A:A,0)),=D4*E4,=SUMIFS(ODC_Travel!K:K,ODC_Travel!A:A,A4,ODC_Travel!B:B,B4),=SUMIFS(Subcontractors!L:L,Subcontractors!C:C,A4,Subcontractors!D:D,B4),=F4+G4+H4
+
+Note: Adjust the mapping logic in Hours to align with your final WBS-to-CLIN mapping. For multi-year pricing, duplicate rows per period and swap the Loaded Rate column to the correct year (I:Y columns in Labor_Rates) or use INDEX with a period-to-column mapping.
+
+SHEET: Summary_Price
+CSV
+CLIN,Period,Extended Labor,$ ODC/Travel,$ SubK,Total Price
+CLIN0001,Base Year,=SUMIFS(CLIN_Detail!F:F,CLIN_Detail!A:A,A2,CLIN_Detail!B:B,B2),=SUMIFS(CLIN_Detail!G:G,CLIN_Detail!A:A,A2,CLIN_Detail!B:B,B2),=SUMIFS(CLIN_Detail!H:H,CLIN_Detail!A:A,A2,CLIN_Detail!B:B,B2),=C2+D2+E2
+CLIN0002,Base Year,=SUMIFS(CLIN_Detail!F:F,CLIN_Detail!A:A,A3,CLIN_Detail!B:B,B3),=SUMIFS(CLIN_Detail!G:G,CLIN_Detail!A:A,A3,CLIN_Detail!B:B,B3),=SUMIFS(CLIN_Detail!H:H,CLIN_Detail!A:A,A3,CLIN_Detail!B:B,B3),=C3+D3+E3
+CLIN0003,Base Year,=SUMIFS(CLIN_Detail!F:F,CLIN_Detail!A:A,A4,CLIN_Detail!B:B,B4),=SUMIFS(CLIN_Detail!G:G,CLIN_Detail!A:A,A4,CLIN_Detail!B:B,B4),=SUMIFS(CLIN_Detail!H:H,CLIN_Detail!A:A,A4,CLIN_Detail!B:B,B4),=C4+D4+E4
+TOTAL,Base Year,=SUM(C2:C4),=SUM(D2:D4),=SUM(E2:E4),=SUM(F2:F4)
+
+SHEET: BOE
+CSV
+WBS,Task Name,Basis of Estimate Type,Assumptions,Method,Inputs,Output LOE Hours,Notes
+1.1,Transition-In,Analogy,"Rapid deployment; 2-week sprints; 1 PM full-time for 1 month; customer SMEs 25%",Bottom-up,"PM: 160 hrs; admin: included in OH",160,"Savings from accelerators (onboarding templates, IaC)"
+1.2,Data Ingestion & Pipelines,Parametric,"X data sources per year; Y complexity; Z% automation via AI framework",Parametric + Bottom-up,"Per source 120 hrs baseline, 30% reduction via accelerators",480,"Adjust when data source count finalized"
+1.3,Cloud Platform Ops,Bottom-up,"24/7 support with automated runbooks; SRE ratio 1:25 services",Bottom-up,"2 FTE base, ramp to 3 FTE if services > 50",640,"Leverage existing FedRAMP-native tooling"
+1.4,Quality & Test,Analogy,"Test automation coverage increases to 70% by OY2",Bottom-up,"Test design 80 hrs/sprint initially, reduces by 20% after OY1",240,"508 and security tests embedded"
+
+SHEET: Assumptions_Risks
+CSV
+Category,Item,Assumption/Risk,Impact,Mitigation/Note
+Schedule,Period of Performance,Base + 4 Options (12 months each),Medium,"Update once RFP confirms PoP"
+Scope,Data Sources,Max 12 sources in BY; +4 per OY,Cost/LOE,"Reprice if sources exceed assumptions"
+Security,ATO/ATO-lite,Agency provides existing ATO boundary,Schedule,"If new ATO required, add security engineering CLIN"
+Travel,CONUS Only,1–2 trips/year for key events,Low,"Use GSA per diem"
+Pricing,Escalation,3% labor escalation/year,Medium,"Align with BLS ECI; adjust to RFP guidance"
+Compliance,Section 889/508,Full compliance; VPAT provided,Low,"Costs included in LOE"
+Risk,Surge Support,Up to 20% surge with 30 days’ notice,Cost,"Insert surge LOE CLIN if required"
+
+SHEET: SB_Participation
+CSV
+Category,Target %,Planned %,Basis,Notes
+Small Business,To be confirmed,=ROUND(SUMIF(Subcontractors!B:B,"SB",Subcontractors!L:L)/SUM(Summary_Price!F:F),4),"$ basis","Update once CLIN totals finalized"
+SDVOSB,To be confirmed,=ROUND(SUMIF(Subcontractors!B:B,"SDVOSB",Subcontractors!L:L)/SUM(Summary_Price!F:F),4),"$ basis",""
+WOSB,To be confirmed,,,""
+HUBZone,To be confirmed,,,""
+SDB,To be confirmed,,,""
+Total Subcontracting,To be confirmed,=ROUND(SUM(Subcontractors!L:L)/SUM(Summary_Price!F:F),4),"$ basis",""
+
+SHEET: Version_Log
+CSV
+Date,Author,Change,Reason,Impact
+2025-09-08,Cost_Proposal Writer,Initial template created,"RFP documents not yet available",Baseline only
+TBD,You,Populate CLINs/periods/rates,"On receipt of solicitation",Enables final pricing
+
+
+How this model aligns with federal pricing expectations
+- Traceability: WBS to CLIN mapping and BOE line-by-line supports auditability and evaluation consistency with Section L/M.
+- Contract type flexibility: Loaded labor rates support FFP and T&M. If CPFF, switch Loaded_Rate computation by removing profit from the rate and adding Fee on Total Cost base at the CLIN or total level per the RFP.
+- Indirect transparency: Fringe, OH, G&A, handling, and fee are explicit and adjustable to match disclosed forward-pricing rates. If you have DCAA-approved rates, replace placeholders and lock the Indirect_Rates sheet.
+- Escalation: Annual labor escalation is parameterized (default 3%). Align to solicitation guidance or cite BLS ECI.
+- ODC/SubK allowability: The template treats ODC/SubK with handling, G&A, and fee per standard practice; adjust if the RFP limits fee on pass-through or prohibits burdening certain ODCs.
+- Small Business utilization: SB_Participation calculates planned percentages by dollar to meet or exceed agency goals once Subcontractors are finalized.
+
+Where to highlight Kamiwaza’s competitive advantages in the price volume
+- Transition-in efficiency: Lower transition LOE and reduced startup costs (ReadMe, BOE 1.1).
+- AI acceleration: Apply explicit productivity factors in BOE (e.g., 20–30% reduction in data pipeline build hours), with conservative phasing to support cost realism.
+- 24/7 US-based support: Price a predictable, risk-reducing support CLIN (Cloud Platform Ops), demonstrating value and continuity.
+- Cost competitiveness: Reflect target “~20% below industry rates” either via lower direct wages (supported by salary survey data) or via disclosed “Strategic Discount” line at the CLIN or Grand Total level if permitted.
+- Zero security incidents: Reduce risk reserves and rework contingencies; articulate in BOE notes.
+
+Next steps to finalize
+- Retrieve the SAM.gov notice (ID 710637f47916457280ca93dbb73c2b41) and all attachments.
+- Confirm: solicitation type, CLIN structure, contract type, periods of performance, file naming, and whether the agency provides a mandatory pricing template.
+- Replace placeholders:
+  - Indirect_Rates with actual provisional/budgeted rates and fee policy.
+  - Labor_Rates with actual base wages and work locations; confirm any locality pay or CBA wage determinations.
+  - Staffing_Plan LOE per PWS tasks and required SLAs.
+  - CLIN_Mapping per Section B or Attachment J.XX.
+  - ODC_Travel and Subcontractors with vendor quotes and GSA per diem rates.
+- Run internal reviews:
+  - Cost realism: sanity-check LOE versus scope and risks.
+  - Arithmetic check: confirm roll-ups equal across CLIN_Detail and Summary_Price.
+  - Compliance check: confirm if fee may be applied to ODC/SubK and if any caps exist.
+
+If you provide the solicitation package, I will immediately tailor this workbook: import the actual CLIN list, reflect the required contract type math, set periods, and deliver the final Cost_Proposal.xlsx ready for submission.

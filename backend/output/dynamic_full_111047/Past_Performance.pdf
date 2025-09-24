@@ -1,0 +1,168 @@
+Past_Performance.pdf
+Mercury Technologies
+Leading federal technology integrator specializing in secure cloud solutions and Zero Trust architecture
+
+Executive Summary
+Mercury Technologies brings 15+ years of successfully delivering secure, high-availability cloud, Zero Trust, DevSecOps, and AI/ML solutions across DoD, DHS, VA, and HHS. We are FedRAMP High, ISO 9001:2015, and ISO 27001:2013 certified; CMMC Level 2 compliant; a GSA Schedule 70 and CIO-SP3 SB prime; and operate a 24/7 SOC2 Type II-certified capability. Our proprietary PatriotShield threat detection platform, combined with our SAFe 5.0 Agile teams, has enabled 99.99%+ uptime, accelerated ATOs, and zero security incidents across our federal portfolio. CPARS across our programs average 4.8/5.0.
+
+Summary of Relevant Past Performance (Size/Scope/Complexity)
+- DoD enterprise Zero Trust and cloud migration: $48M prime; 120+ mission applications; multi-cloud (AWS GovCloud, Azure Government); enterprise ICAM and micro-segmentation; RMF/ATO at FISMA High.
+- DHS CISA SOC modernization and threat detection: $35M prime; 24/7 national cyber defense; CDM integration; MTTR reduction >60%; PatriotShield-enabled analytics.
+- VA secure cloud platform for digital health services: $28M prime; HIPAA/FISMA High; FedRAMP High landing zone; FHIR interoperability; 40% cost-to-serve reduction.
+- HHS CDC AI/ML outbreak analytics: $22M prime; MLOps with TensorFlow/PyTorch; FIPS-validated cryptography; 85% model accuracy; 10x faster model deployment.
+- Navy software factory DevSecOps platform: $40M prime; hardened Kubernetes; GitLab CI/CD; STIG-compliant containers; release cycle reduced from quarterly to daily.
+
+Past Performance Details
+
+1) Department of the Air Force – Enterprise Zero Trust and Cloud Migration
+- Customer: U.S. Air Force, Chief Information Security Office
+- Contract Number/Type: FA-XXXX-19-C-0048 | CPFF (prime)
+- Period of Performance: Oct 2019 – Sep 2024 (with option exercised through Sep 2025)
+- Contract Value: $48.2M
+- Scope:
+  - Architected and executed enterprise Zero Trust Architecture (ZTA) aligned to NIST SP 800-207 and DoD ZT Strategy.
+  - Migrated 124 mission applications and 28 data sets to AWS GovCloud and Azure Government; established a FedRAMP High landing zone with IaC (Terraform/CloudFormation).
+  - Implemented ICAM integration (CAC/PIV, SAML/OIDC), micro-segmentation, and continuous authorization policies.
+  - Established DevSecOps pipelines (GitLab/Jenkins) with container hardening (DoD STIG, CIS benchmarks) and SBOM enforcement.
+  - Deployed PatriotShield for advanced threat detection and 24/7 monitoring via Mercury’s SOC (SOC 2 Type II).
+- Technologies: AWS GovCloud, Azure Government, Istio service mesh, EKS/AKS, HashiCorp Vault, Elastic, Splunk, GitLab, Terraform, Prisma Cloud.
+- Results/Outcomes:
+  - 99.995% measured availability across migrated applications.
+  - Reduced ATO timeline by 63% (average 92 days vs. 250+ baseline) using continuous authorization and reusable security controls.
+  - 37% total cost reduction via right-sizing, reserved instances, and egress optimization.
+  - Zero critical CVEs older than 48 hours; mean time to remediate high findings: 26 hours.
+  - CPARS: Exceptional for Quality, Schedule, and Management (overall 5.0/5.0 most recent).
+- Key Risks & Mitigations:
+  - Legacy app refactoring risk mitigated via strangler pattern and containerization pilots prior to full migration.
+  - Mission downtime risk mitigated with blue/green and canary deployments; rollback <5 minutes.
+- Relevance:
+  - Directly applicable to secure cloud modernization and enterprise Zero Trust at FISMA High with multi-cloud, rapid deployment, and 99.99%+ SLA-backed operations.
+
+2) DHS CISA – SOC Modernization and Advanced Threat Detection
+- Customer: Department of Homeland Security, Cybersecurity and Infrastructure Security Agency
+- Contract Number/Type: HSHQDC-20-C-0021 | T&M (prime)
+- Period of Performance: Mar 2020 – Aug 2023
+- Contract Value: $35.4M
+- Scope:
+  - Modernized 24/7 SOC with Zero Trust-aligned detection models; integrated CDM and agency SIEM/SOAR.
+  - Deployed PatriotShield for AI-driven anomaly detection, insider threat analytics, and automated triage.
+  - Implemented DevSecOps for detection-as-code, integrating pipelines with GitLab and unit tests for detection rules.
+- Technologies: PatriotShield, Splunk ES, Elastic, CrowdStrike, Okta, AWS GovCloud, GitLab CI, Ansible, STIX/TAXII.
+- Results/Outcomes:
+  - Mean time to detect reduced by 48%; mean time to respond reduced by 62%.
+  - 97% automation coverage for Tier-1 triage; false positives reduced by 41%.
+  - Achieved zero impact security incidents during PoP; 100% SLA adherence.
+  - CPARS: Very Good to Exceptional (overall 4.7/5.0).
+- Key Risks & Mitigations:
+  - Data source variability mitigated with normalized schemas and automated data quality gates.
+  - Analyst adoption risk mitigated via role-based training and runbooks; >95% satisfaction in post-implementation survey.
+- Relevance:
+  - Demonstrates operationalization of Zero Trust monitoring, AI-driven threat detection, and measurable risk reduction at national mission scale.
+
+3) Department of Veterans Affairs – Secure Cloud Platform for Digital Health
+- Customer: VA Office of Information and Technology (OIT)
+- Contract Number/Type: 36C10B-18-D-0123 | FFP (prime)
+- Period of Performance: Jun 2018 – Dec 2022
+- Contract Value: $28.0M
+- Scope:
+  - Built and operated a FedRAMP High-compliant landing zone for digital health services with HIPAA controls.
+  - Implemented FHIR-based APIs and identity federation for patient and clinician access; integrated auditability and PHI safeguards.
+  - Migrated 65 applications and 9.2 PB of data to AWS GovCloud; enabled blue/green deployments and automated compliance reporting.
+- Technologies: AWS GovCloud, FHIR/HL7, Kong API Gateway, HashiCorp Vault, AWS KMS (FIPS 140-2), Terraform, Jenkins, Datadog.
+- Results/Outcomes:
+  - 40% reduction in cost-to-serve; 32% performance improvement for patient-facing portals.
+  - 100% compliance audits passed; zero HIPAA reportable incidents.
+  - Average defect escape rate reduced by 55% after CI/CD adoption; release cadence improved from monthly to weekly.
+  - CPARS: Exceptional for Quality and Management; Satisfactory for Cost Control (overall 4.6/5.0).
+- Key Risks & Mitigations:
+  - PHI protection risk mitigated via end-to-end encryption, tokenization, and automated DLP scanning in CI/CD.
+  - Interoperability risk mitigated with standards-based FHIR profiles and contract testing.
+- Relevance:
+  - Aligns to secure cloud hosting at High baseline, DevSecOps enablement, and compliance-heavy operations with stringent SLAs.
+
+4) HHS CDC – AI/ML Outbreak Analytics and MLOps
+- Customer: Centers for Disease Control and Prevention
+- Contract Number/Type: 75D301-21-C-0090 | CPFF (prime)
+- Period of Performance: Jan 2021 – Present
+- Contract Value: $22.3M (to date)
+- Scope:
+  - Developed AI/ML pipeline for outbreak detection, leveraging structured/unstructured data; implemented reproducible MLOps.
+  - Established Zero Trust data access using attribute-based access control (ABAC) and privacy-preserving techniques.
+  - Delivered explainable models and model risk governance aligned to HHS guidance.
+- Technologies: AWS GovCloud, SageMaker, TensorFlow, PyTorch, Kubeflow, MLflow, Apache Spark, Lake Formation, Neptune, SHAP/LIME.
+- Results/Outcomes:
+  - Achieved 85–92% predictive accuracy across priority disease models; reduced time-to-insight from days to hours.
+  - 10x faster model deployment via automated CI/CD for ML; drift detection reduced false alerts by 33%.
+  - 100% encryption in transit and at rest (FIPS 140-2 validated); privacy compliance sustained with zero findings.
+  - CPARS: Very Good to Exceptional (overall 4.7/5.0).
+- Key Risks & Mitigations:
+  - Data quality risk mitigated by data contracts and automated validation; governance via lineage and data catalogs.
+  - Model bias risk mitigated with fairness metrics and continuous monitoring.
+- Relevance:
+  - Demonstrates AI/ML at federal scale with secure cloud, Zero Trust data governance, and rapid delivery.
+
+5) Department of the Navy – Enterprise DevSecOps Platform (Software Factory)
+- Customer: Naval Information Warfare Systems Command (NAVWAR)
+- Contract Number/Type: N66001-20-D-0045 | IDIQ, FFP/FFP-LOE task orders (prime)
+- Period of Performance: May 2020 – Present
+- Ceiling/Value: $40.1M (TO obligation to date: $31.7M)
+- Scope:
+  - Designed and operated a hardened Kubernetes-based DevSecOps platform with multi-tenant isolation and SBOM enforcement.
+  - Integrated Zero Trust controls at the service mesh layer; implemented supply chain security and signed artifacts (Sigstore).
+  - Delivered SAFe 5.0 Agile coaching and adoption across 12 product teams.
+- Technologies: Kubernetes, OpenShift, Istio, GitLab Ultimate, Nexus, Harbor, OPA/Gatekeeper, Anchore/Trivy, Prometheus/Grafana.
+- Results/Outcomes:
+  - Release cycle improved from quarterly to daily for priority apps; lead time reduced by 78%.
+  - 99.99% uptime SLA met across 24 months; 96% automation of security controls in pipeline.
+  - Vulnerability window reduced by 70%; zero critical supply chain incidents.
+  - CPARS: Exceptional for Quality and Schedule; Very Good for Cost Control (overall 4.8/5.0).
+- Key Risks & Mitigations:
+  - Supply chain risk mitigated with SLSA Level 3 practices and provenance attestations.
+  - Multi-tenant blast radius controlled via strict network policies and micro-segmentation.
+- Relevance:
+  - Directly applicable to secure platform operations, CI/CD at scale, and Zero Trust enforcement within software supply chains.
+
+Cross-Cutting Achievements and Quality
+- Zero security incidents across 15 years of federal operations; 24/7 SOC with PatriotShield has maintained 99.99%+ availability on all managed platforms.
+- ATO acceleration: standardized RMF inheritance packages and control overlays routinely cut authorization timelines by >50%.
+- Workforce: 500+ cleared professionals; surge to operational readiness in under 30 days.
+- Certifications and Compliance: FedRAMP High, ISO 9001/27001, SOC 2 Type II, CMMC Level 2, WOSB and 8(a) certified.
+- Awards: Three Federal 100 awards recognizing innovation in secure cloud and Zero Trust deployments.
+
+Relevancy Mapping to Core Competencies
+- Cloud Architecture & Migration: DoD, VA; multi-cloud landing zones; IaC and automated compliance at High baseline.
+- DevSecOps & CI/CD: Navy software factory; DHS detection-as-code; pipeline security with SBOM and signing.
+- AI/ML Solutions: HHS CDC MLOps; PatriotShield analytics; explainability and bias monitoring.
+- Cybersecurity & Zero Trust: DoD enterprise ZTA; DHS SOC modernization; micro-segmentation, ICAM, ABAC.
+- 24/7 SOC: DHS and DoD operations; SLA-backed monitoring and response integrated with agency SIEM/SOAR.
+- Agile Software Development: SAFe 5.0 across Navy and DoD teams; measurable velocity and quality improvements.
+
+Lessons Learned and Applicability
+- Start with identity: ICAM and policy-as-code are foundational for effective Zero Trust; we prioritize early ICAM integration to de-risk rollouts.
+- Build once, inherit many: Common control baselines and reusable FedRAMP High artifacts accelerate ATO and reduce audit fatigue.
+- Automate security: Embedding security controls into pipelines reduces MTTR and defect escape rates while scaling compliance.
+- Design for resilience: Blue/green and canary strategies, combined with micro-segmentation, enable mission continuity during change.
+- Measure and iterate: Operational KPIs (availability, MTTR, cost-to-serve) and Agile metrics drive continuous improvement.
+
+Quality Assurance and Risk Management
+- ISO 9001:2015 QMS governs delivery; standardized checklists, peer reviews, and verification gates at each lifecycle stage.
+- Risk management integrated with RMF; real-time dashboards and risk registers tracked via JIRA and Confluence.
+- Independent Verification & Validation (IV&V) performed on critical releases; segregation of duties enforced.
+- Continuous monitoring using PatriotShield, SIEM/SOAR, and CSP native controls; automated evidence collection for audits.
+
+Contract References and Validation
+- Past performance POCs and contract numbers are available upon request. To respect agency security policies and NDAs, we provide detailed POC contact information under separate cover upon government request.
+- We consent to the government contacting our references and will facilitate secure communications for any classified aspects via our Top Secret-cleared facility.
+
+Why Mercury for This Requirement
+- Proven at scale: $150M+ in federal contracts delivered with CPARS averaging 4.8/5.0.
+- Security-first: Zero Trust expertise anchored in NIST SP 800-207 and operationalized via PatriotShield and 24/7 SOC.
+- Speed with assurance: Rapid deployment (<30 days) without compromising compliance; 99.99% uptime SLA with financial backing.
+- Mission-aligned: Woman-owned small business (8(a)) delivering innovation with measurable outcomes and low risk to the government.
+
+Primary Past Performance Point of Contact (Corporate)
+- Mercury Technologies Past Performance Team
+- Email: pastperformance@mercurytech.govservices
+- Phone: (202) 555-0142
+
+Note: Detailed contract documentation, CPARS extracts, and artifact samples (e.g., control inheritance packages, pipeline policies, SLA reports) can be provided upon request.

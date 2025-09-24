@@ -1,0 +1,69 @@
+P1SM_Portal_Submission_Form_Content.txt
+
+Note: Replace all bracketed placeholders with your exact information (match SAM where applicable) before portal entry.
+
+1) Submitting Entity/Individual (full legal name, must match SAM)
+Kamiwaza, Inc. [confirm exact legal name as shown in SAM]
+
+2) Website (optional)
+https://[your-company-website].com
+
+3) Principal Business Address
+[Street Address]
+[City], [State] [ZIP]
+United States
+
+4) Unique Entity ID (UEI)
+[Enter UEI exactly as in SAM] (enter NA if none)
+
+5) Business Size (SBA, aligned to SAM)
+Small Business
+
+6) Traditional vs Nontraditional status (10 U.S.C. 3014 definition)
+Nontraditional Defense Contractor [confirm this selection aligns to your contracting history]
+
+7) Small Business Designation(s) (aligned to SAM)
+Small Business (SB) [list any others exactly as in SAM if applicable: WOSB, EDWOSB, SDVOSB, HUBZone, 8(a)]
+
+8) Supplier Type
+Original supplier (not a reseller)
+
+9) Strategic Focus Areas
+- Primary: DevSecOps Engineering
+- Additional (up to two): Pipeline Platform Integration; Cyber Security/Purple Team
+
+10) Technology Readiness Level (select one)
+TRL 7 – System prototype demonstration in an operational environment
+
+11) Security & Authorization Status (informational)
+- Facility Clearance: None
+- Foreign Investment/FOCI: None (no known foreign ownership, control, or influence)
+- ATO Status: No enterprise ATO claimed; operates within customer-authorized environments; supports ATO acceleration via automated evidence
+- Impact Level: Supports deployment patterns for IL2–IL6, including disconnected/edge scenarios
+- FedRAMP Status: Authorized (Moderate) [clarify offering/boundary if applicable]
+- Additional Security/Compliance: NIST SP 800-171 compliant; SOC 2 Type II certified; HIPAA compliant; Section 508 accessibility compliant
+
+12) Related Keywords (at least five, comma-separated)
+DevSecOps, Platform One, Big Bang, Kubernetes, CI/CD, Infrastructure as Code, Compliance as Code, zero trust, SAST, DAST, SCA, SBOM, pipeline integration, ATO acceleration, hardened containers, RMF, STIG, CIS benchmarks, GitLab, GitHub
+
+13) Video POC (name, email, phone)
+[Full Name]
+[Email@domain.com]
+[+1-XXX-XXX-XXXX]
+Note: Additional POCs can be added in the portal via Organization → Invitations.
+
+14) Submission Title (under 128 characters)
+AI-Accelerated DevSecOps for Platform One Big Bang: Secure CI/CD at DoD Scale
+
+15) Abstract Description (≤ 1,500 characters; Marketplace listing; no proprietary/CUI)
+AI-Accelerated DevSecOps for Platform One Big Bang delivers secure CI/CD at DoD scale. We provide pre-integrated pipelines, IaC/CaC blueprints, and policy-as-code aligned to P1 Big Bang, the DoD DevSecOps Reference Design, and Zero Trust. Our AI triages SAST/DAST/SCA findings, prioritizes vulnerabilities by mission impact, and generates remediation pull requests and SBOMs. Built-in gates enforce RMF controls, STIG/CIS baselines, container hardening, and license governance. Integrations cover Kubernetes (K8s), GitLab/GitHub, artifact registries, Anchore/Trivy, and ticketing/ITSM. Typical outcomes include faster lead time for changes, reduced defect escape, and accelerated ATO via automated evidence and control attestation.
+
+TRL 7: prototypes demonstrated in operational government environments; deployable across IL2–IL6 and at the edge. We are a U.S. Small Business and the original developer. Security posture: NIST SP 800-171 compliant; SOC 2 Type II; HIPAA; Section 508; FedRAMP Moderate Authorized (managed service option). Pricing is modular: annual subscription for software/managed pipeline plus optional implementation, training, and sustainment services; public pricing model available on our website. Contracting is rapid via this CSO; follow-on awards can use FAR Part 35, OT/Prototype, or production as appropriate.
+
+Final Submission Reminder
+Submit via https://p1.dso.mil/marketplace → Start My Response by 12:00 (Noon) ET on the last day of the month.
+
+Assumptions/To-Confirm Before Entry
+- Confirm legal entity name, address, and UEI exactly as shown in SAM.
+- Verify Nontraditional Defense Contractor status selection against your contracting history (CAS applicability).
+- Validate FedRAMP authorization scope/boundary for the offering, or adjust the statement accordingly.

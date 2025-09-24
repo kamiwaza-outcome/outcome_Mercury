@@ -1,0 +1,231 @@
+Below is the complete content and structure for Cost_Proposal.xlsx. It provides a detailed cost breakdown and clear pricing structure in Bahraini Dinars (BHD), with VAT as a separate line item, aligned to a firm-fixed-price, LPTA evaluation, and SF-1449 mapping.
+
+File title: Cost_Proposal.xlsx
+Currency: Bahraini Dinars (BHD)
+VAT: Excluded from CLIN prices; shown as a separate calculated line item
+Contract type: Firm-Fixed-Price (FFP)
+Place of performance: Kingdom of Bahrain
+Assumed PoP: 12 months (Sep 2025–Sep 2026); planning Sep–Nov; launch Dec 2025; includes July Independence Day; closeout by Sep 2026
+
+WORKBOOK STRUCTURE (TABS)
+1) Summary & SF-1449 Map
+2) CLIN 0001 Sub-CLIN Breakdown
+3) Labor Build (Hours x Rates)
+4) Media Plan (Net, No Markup)
+5) Production Budget
+6) Tools, Licenses & Analytics
+7) ODCs, Travel & Insurance
+8) Milestones & Invoicing
+9) VAT Calculation
+10) Assumptions & Pricing Notes
+11) Optional Services Menu (Not evaluated unless requested)
+
+TAB 1 — SUMMARY & SF-1449 MAP
+Purpose: Present the FFP summary price mapped to SF-1449 and show VAT as a separate line.
+
+- Contract Line Items
+  - CLIN 0001: Integrated Multimedia Marketing Strategy for “America 250” in Bahrain
+    - Quantity: 1
+    - Unit: LOT
+    - Unit Price (Excl. VAT): 74,900.000 BHD
+    - Amount (Excl. VAT): 74,900.000 BHD
+
+- VAT (separate, not included in CLIN prices)
+  - VAT Rate (cell B6): 10.0% (editable per applicable law/exemption)
+  - VAT Amount (cell C7): =ROUND(C5*B6,3) where C5 = 74,900.000 and B6 = 0.10
+  - VAT Amount (default): 7,490.000 BHD
+
+- Grand Totals
+  - Total, Excl. VAT (cell C5): 74,900.000 BHD
+  - Total VAT (cell C7): 7,490.000 BHD
+  - Total Incl. VAT (cell C9): =ROUND(C5+C7,3) => 82,390.000 BHD
+
+- Evaluation Note: Prices are provided in BHD. VAT is excluded from CLIN price and listed separately per RFP instruction. Media billed at net, no markup. No advance payments; NET 30 upon acceptance (FAR 52.232-33).
+
+TAB 2 — CLIN 0001 SUB-CLIN BREAKDOWN
+Purpose: Transparency on what is included in the fixed price. Sub-CLINs are internal for clarity; CLIN 0001 remains a single FFP line on SF-1449.
+
+Columns: Sub-CLIN | Description | Deliverables/Scope Summary | Fixed Price (BHD)
+Rows:
+- 0001AA | Pre-Campaign Research & Focus Groups | 2x focus groups, screener/guide, Arabic/English moderation, topline report with target segments | 3,900
+- 0001AB | Campaign Strategy & Media Plan | Bilingual integrated strategy, channel mix, flighting, KPIs, media plan v1–v2 | 6,800
+- 0001AC | Creative Development & Production (Core) | Localization of America 250; 1x 60–90s hero video; 3x 15–30s cutdowns; 12x static/social assets; 6x reels; copy and design in EN/AR | 11,500
+- 0001AD | Media Planning & Buying Services (Agency Fee) | Negotiation, trafficking, weekly optimizations, make-good enforcement, post-buys | 3,800
+- 0001AE | Media Placements (Net Pass-Through) | OOH, digital, social, radio, influencers; net of any publisher discounts; no markup | 30,000
+- 0001AF | Independence Day Multimedia Display | Concept, design, content adaptation, equipment rental, install, show ops, teardown | 6,200
+- 0001AG | Measurement, Analytics & Monthly Reporting | KamiInsights dashboards; monthly reports; post-buy analyses; data sharing | 4,200
+- 0001AH | Project Management & Quality Assurance | PMO, schedule, risk/issue logs, reviews, QAP compliance | 4,500
+- 0001AJ | Transition & Closeout | Handover of assets, data/export, final performance report, lessons learned | 1,500
+- 0001AK | ODCs & Local Travel | Local transport, permits, small equipment consumables, light shipping | 1,300
+- 0001AL | DBA & Insurance | Defense Base Act (as applicable), local workers’ comp, general liability | 1,200
+
+Subtotal CLIN 0001 (Excl. VAT): 74,900 BHD
+
+TAB 3 — LABOR BUILD (HOURS x RATES)
+Purpose: Labor transparency. Fully burdened rates include overhead, G&A, and profit. All rates in BHD/hour.
+
+Columns: Role | Rate (BHD/hr) | Hours | Extended (BHD) | Mapped Sub-CLIN(s)
+Sample rates and hours:
+- Account Director | 30.000 | 60 | 1,800 | 0001AB, 0001AH
+- Project Manager (Senior) | 28.000 | 120 | 3,360 | 0001AH, 0001AF, 0001AJ
+- Brand/Comms Strategist | 26.000 | 110 | 2,860 | 0001AA, 0001AB
+- Creative Director | 27.000 | 80 | 2,160 | 0001AC, 0001AF
+- Art Director | 21.000 | 140 | 2,940 | 0001AC
+- Copywriter (AR/EN) | 20.000 | 130 | 2,600 | 0001AC
+- Video Producer | 23.000 | 95 | 2,185 | 0001AC, 0001AF
+- Editor/Motion GFX | 22.000 | 120 | 2,640 | 0001AC, 0001AF
+- Media Planner/Buyer | 23.000 | 140 | 3,220 | 0001AD
+- Data Analyst | 21.000 | 90 | 1,890 | 0001AG
+- Community Manager (EN/AR) | 16.000 | 160 | 2,560 | 0001AC, 0001AG
+- QA Specialist | 18.000 | 60 | 1,080 | 0001AH
+- Field Coordinator | 14.000 | 80 | 1,120 | 0001AF, 0001AK
+- Translator/Transcreator | 18.000 | 80 | 1,440 | 0001AC, 0001AB
+- Focus Group Moderator (AR) | 24.000 | 16 | 384 | 0001AA
+
+- Labor Subtotal (rolled into relevant Sub-CLINs): Use SUM of Extended (reference in each Sub-CLIN). Rates reflect Gulf market and local teaming with Al-Mamlaka Creative. No separate fee applied beyond these fully burdened rates.
+
+TAB 4 — MEDIA PLAN (NET, NO MARKUP)
+Purpose: Show net media spend allocation, flighting, and expected delivery. All media purchased at net; no markup; agency fee is fixed in 0001AD.
+
+Columns: Channel | Flight | Units/Notes | Expected Delivery | Net Cost (BHD)
+- Programmatic Display/Video | Dec–Apr (5 mo) | ~10.0M impressions @ est. 1.00 BHD CPM | CTR 0.30–0.60%; VCR 20–35% | 10,000
+- Paid Social (Meta, YouTube, Snapchat) | Dec–Jul (8 mo) | Mix of video views/clicks; brand lift where available | CPV/CTR benchmarks per platform | 8,500
+- Search (Google) | Dec–Jul (8 mo) | Always-on; US–Bahrain themes | CTR 3–5%; CPC 0.050–0.090 BHD | 1,000
+- OOH (Mall/Lampposts) | Jan–Mar (13 weeks) | 4 faces rotation; prime mall inside/out | 200–300 GRPs/month (est.) | 7,500
+- Radio (Top 2 stations) | Feb–Apr (12 weeks) | 15s and 30s spots; drive-time | 3–5 OTS/wk | 1,500
+- Micro-Influencers (local) | Jan–Jun | 6 partners, 2 posts + 2 stories each | Est. 300–500K reach total | 1,500
+Media Net Subtotal: 30,000 BHD
+
+Monthly media burn (illustrative; adjustable with COR):
+- Dec: 4,500
+- Jan: 4,500
+- Feb: 4,500
+- Mar: 4,000
+- Apr: 4,000
+- May: 4,000
+- Jun: 2,500
+- Jul: 2,000
+Total: 30,000 BHD
+
+Performance assurances:
+- Publisher guarantees sought (impressions/GRPs/spot counts). Make-goods negotiated and delivered in-period or next available, at no cost to USG, if guarantees are not met.
+
+Compliance notes:
+- No TikTok/ByteDance buys planned (52.204-27).
+- All placements brand-safe; Section 889 compliance observed for any telecom/data infrastructure.
+
+TAB 5 — PRODUCTION BUDGET
+Purpose: Itemize key assets within 0001AC and 0001AF.
+
+Columns: Asset/Item | Qty | Unit Cost (BHD) | Extended (BHD) | Notes
+- Hero video (60–90s) | 1 | 4,000 | 4,000 | Direction, shoot, edit, color, AR/EN subtitles
+- Cutdowns (15–30s) | 3 | 900 | 2,700 | For paid/digital rotation
+- Social short-form reels | 6 | 350 | 2,100 | Vertical formats
+- Static/social designs | 12 | 150 | 1,800 | EN/AR copy adaptation included
+- Photography session | 1 | 1,200 | 1,200 | Stills for campaign toolkit
+- Localization & Transcreation | Lot | 1,200 | 1,200 | Cultural/linguistic QA (AR/EN)
+- Music/SFX/licensing | Lot | 800 | 800 | Royalty-cleared
+- Independence Day display concept | 1 | 1,200 | 1,200 | Creative concept + storyboards
+- Display content adaptation | 1 | 1,800 | 1,800 | Repurpose hero/cutdowns for LED
+- LED wall rental & rigging | 1 | 2,450 | 2,450 | Event-day rental, install, op
+- Lighting & audio package | 1 | 1,350 | 1,350 | Show ops
+- Crew, transport, permits | Lot | 1,400 | 1,400 | Local logistics
+Production Subtotal: 21,000 BHD
+Note: Production Subtotal is embedded within 0001AC (11,500 BHD) + 0001AF (6,200 BHD) + portions of 0001AK and labor in Tab 3.
+
+TAB 6 — TOOLS, LICENSES & ANALYTICS (0001AG)
+Purpose: Itemization supporting 0001AG.
+
+Columns: Tool/Service | Term | Cost (BHD) | Notes
+- KamiInsights Analytics Seats (2) | 12 mo | 1,800 | Dashboards, AR/EN social listening
+- Social Listening (Arabic/English) | 12 mo | 1,200 | Trend/topic analysis
+- Survey platform (focus group support) | 6 mo | 450 | Screener, post-exposure surveys
+- Data storage/backup | 12 mo | 300 | Secure cloud; export/transfer at closeout
+- Reporting production | 12 mo | 450 | Automated + analyst QA time
+Tools & Analytics Subtotal: 3,700 BHD
+Note: Remainder of 0001AG covers analyst labor (Tab 3).
+
+TAB 7 — ODCs, TRAVEL & INSURANCE
+Purpose: Itemize 0001AK and 0001AL components, plus what’s included in price.
+
+- ODCs & Local Travel (0001AK = 1,300 BHD)
+  - Local ground transport for crew and equipment: 500
+  - Minor permits/venue coordination fees: 300
+  - Consumables/misc. shipping within Bahrain: 500
+
+- DBA & Insurance (0001AL = 1,200 BHD)
+  - DBA premiums (as applicable by staffing mix) included
+  - Local worker’s comp and general liability included
+  - Equipment insurance for contractor-owned gear included
+Note: We will request DBA waiver for eligible local nationals if authorized; until granted, DBA cost is included.
+
+TAB 8 — MILESTONES & INVOICING
+Purpose: Compliant payment structure after delivery/acceptance; no advance payments.
+
+Columns: Milestone | Target Month | Acceptance Artifact | % of CLIN 0001 | Amount (BHD)
+- Kickoff & Research Report approved | Oct | Approved research topline | 10% | 7,490
+- Strategy & Media Plan approved | Nov | Signed strategy & media plan | 10% | 7,490
+- Core Creative Assets accepted | Dec–Feb | Asset acceptance memo | 15% | 11,235
+- Monthly Implementation (Dec–Jul) | Dec–Jul | Monthly status reports | 7% x 7 = 49% | 5,243 x 7 = 36,701
+- Independence Day Display delivered | Jul | Event acceptance memo | 8% | 5,992
+- Final Report & Transition complete | Sep | Final report; asset handover | 8% | 5,992
+Total: 100% | 74,900 BHD
+
+Note: Media placements are reconciled within monthly implementation acceptance.
+
+TAB 9 — VAT CALCULATION
+Purpose: Calculate VAT separately and flex for exemptions.
+
+- Inputs
+  - Taxable Base (cell B3): =SUM of all taxable Sub-CLINs (default: all CLIN 0001 items) = 74,900.000
+  - VAT Rate (cell B4): 10.0% (editable)
+- Outputs
+  - VAT Amount (cell B6): =ROUND(B3*B4,3) => 7,490.000 BHD
+  - Total Incl. VAT (cell B8): =ROUND(B3+B6,3) => 82,390.000 BHD
+
+Notes:
+- If an Embassy VAT exemption applies, set VAT Rate to 0.0% and VAT Amount will calculate to 0.000 BHD.
+- No markup/fee applied to VAT.
+
+TAB 10 — ASSUMPTIONS & PRICING NOTES
+Key commercial terms and compliance notes:
+- Contract Type: Firm-Fixed-Price; CLIN 0001 is a single LOT in BHD, inclusive of all labor, materials, overhead, profit, insurance (incl. DBA), transportation to U.S. Embassy Manama.
+- VAT: Excluded from CLIN price; shown as separate line; applied per local law to taxable portions. No markup on VAT.
+- Currency: BHD; prices firm for 120 days from proposal due date.
+- Media: Purchased at net; no markup. Agency fee for planning/buying is fixed (0001AD).
+- ByteDance/TikTok: No placements planned; clause 52.204-27 observed. Standard brand-safety applied.
+- Section 889: No covered telecom/video surveillance equipment or services used in performance.
+- SCLS: If applicable, our fully burdened rates comply; no separate SCA line items required in this price volume.
+- Period of Performance: Assumed Sep 2025–Sep 2026; launch Dec 2025; includes July Independence Day event; schedule can be refined with COR at kickoff.
+- Deliverables acceptance drives invoicing; NET 30 EFT after acceptance and valid invoice (FAR 52.232-33).
+- Partnering: Al-Mamlaka Creative (Bahrain) supports local production and media; costs are embedded in relevant Sub-CLINs; no separate prime markup on media.
+- Make-Goods: Publisher guarantees sought; shortfalls remedied via added value/make-good at no cost to USG.
+
+TAB 11 — OPTIONAL SERVICES MENU (NOT EVALUATED UNLESS ADDED BY CO)
+Purpose: Pre-priced adjustments for scope elasticity via modification (informational only).
+
+Columns: Optional Item | Unit | Unit Price (BHD) | Notes
+- Additional 30-sec video spot | Each | 2,400 | Concept, shoot or recut, edit, subtitles
+- Additional static/social asset pack (10) | Pack | 900 | Includes AR/EN copy
+- Additional influencer package (2 creators) | Pack | 900 | 2 posts + 2 stories each
+- Extra OOH block (4 faces, 4 weeks) | Block | 2,200 | Subject to availability
+- Extra paid social (increment) | 1,000 BHD | 1,000 | Net spend; same terms; no markup
+- Additional onsite activation support (crew) | Day | 450 | Up to 8 hours, local crew
+
+PRICE NARRATIVE (IN-LINE SUMMARY FOR CO)
+- Total Firm-Fixed-Price (CLIN 0001), Excl. VAT: 74,900.000 BHD
+- VAT (assumed 10% for pricing), Separate Line: 7,490.000 BHD
+- Total Incl. VAT: 82,390.000 BHD
+- Basis: Efficient, bilingual, locally delivered campaign leveraging digital-first media, focused OOH bursts, and an Embassy-quality Independence Day multimedia display. KamiInsights analytics and monthly reporting with post-buy analyses included. Media is net, no markup; agency fee fixed in 0001AD. All required insurance (incl. DBA), overhead, profit, transportation, and compliance costs are included in the CLIN price. VAT is excluded from CLIN and presented separately.
+
+HOW TO POPULATE THE EXCEL (IMPLEMENTATION NOTES)
+- Enter the above values per tab, preserving formulas noted:
+  - Summary & SF-1449 Map: Enter CLIN 0001 price in C5; VAT rate in B6; formulas as provided.
+  - Sub-CLIN Breakdown: Enter fixed prices exactly as listed; ensure sum equals 74,900.
+  - Labor Build: Use role rates and hours; align Extended totals with Sub-CLIN allocations. If adjusting hours, keep the CLIN subtotal constant unless directed.
+  - Media Plan: Keep Net Subtotal at 30,000; monthly distribution as listed; adjust channels in coordination with COR post-award if needed.
+  - Production, Tools, ODCs, Insurance: Populate as listed; these roll into respective Sub-CLINs.
+  - Milestones & Invoicing: Enter percentage allocations and amounts; totals must equal 100% and 74,900 BHD respectively.
+  - VAT Calculation: Keep VAT rate editable. If the Embassy provides VAT exemption, set to 0%.
+
+This Cost_Proposal.xlsx structure provides a complete, auditable cost breakdown and transparent pricing structure that complies with the RFP: BHD pricing, VAT separated, FFP CLIN with detailed underpinnings, media at net with a fixed agency fee, and clear invoicing aligned to deliverable acceptance.

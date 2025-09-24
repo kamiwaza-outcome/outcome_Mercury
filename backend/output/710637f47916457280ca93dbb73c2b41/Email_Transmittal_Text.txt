@@ -1,0 +1,94 @@
+To: jacquelyn.cavano@us.af.mil; shelley.dormio@us.af.mil
+Cc: [Insert Contracting Mailbox if listed on SAM.gov notice]
+Subject: RFI-RIKD-26-R-B001 (NARWHAL RED) – Kamiwaza Response Submission (Unclassified; Proprietary/Public Versions Attached)
+
+Ms. Cavano and Ms. Dormio,
+
+In accordance with the instructions on SAM.gov for “Novel Approaches & Research for Warfighting That Hastens Artificial Learning (NARWHAL) RED,” Notice ID RFI-RIKD-26-R-B001, Kamiwaza hereby submits our unclassified response by the stated deadline of Thursday, 18 September 2025, 12:00 PM Eastern. We recognize the notice references both EST and EDT; to avoid ambiguity, we are submitting in advance of 12:00 PM EDT.
+
+Submission method confirmation
+- Primary channel: Email submission to the designated AFRL/RIKD points of contact per the SAM.gov notice (this email).
+- Alternate channel for large files (if required by the notice or due to email size limits): DoD SAFE. Identical copies have been prepared for secure upload.
+  - DoD SAFE Package ID: [Insert Package ID]
+  - Passphrase (under separate cover to Government POCs): [Insert Passphrase Delivery Method (e.g., phone/SMS)]
+If the Government requires an additional or different submission channel (e.g., PIEE Solicitation Module), please advise and we will comply immediately.
+
+Company Identifiers (SAM-registered)
+- Legal Name: Kamiwaza
+- SAM UEI: [REQUIRED – Insert UEI from SAM]
+- CAGE Code: [REQUIRED – Insert CAGE]
+- NAICS: 541715 — Small Business
+
+Primary Point of Contact (Authorized Signatory)
+- Name: [REQUIRED – Insert Full Name], [Title]
+- Phone: [REQUIRED – Insert Phone]
+- Email: [REQUIRED – Insert Email]
+- Address: [REQUIRED – Insert Full Company Address]
+Alternate POC (for FOIA/records coordination): [Insert Name, Phone, Email]
+
+Proprietary and security handling
+- Classification: No classified information is included. All materials are UNCLASSIFIED.
+- Versions provided:
+  - Proprietary version (unredacted): Marked “UNCLASSIFIED” at top center and “KAMIWAZA PROPRIETARY – 5 U.S.C. § 552(b)(4) | 18 U.S.C. § 1905” in footer on each page; proprietary paragraphs bracketed and labeled.
+  - Public/redacted version: Unclassified, with proprietary markings and bracketed content removed to facilitate public release.
+- FOIA and trade secret protections: We respectfully request protection from public disclosure pursuant to 5 U.S.C. § 552(b)(4), the Trade Secrets Act (18 U.S.C. § 1905), and applicable DoD/USAF policies. Please consult the Proprietary version’s legend for handling instructions.
+- Return/destruction request: If retention is not required by law or regulation, please return or destroy proprietary copies upon completion of market research or if requested under FOIA, coordinate with the Kamiwaza FOIA POC prior to any release.
+
+Acknowledgment
+- Please confirm receipt by reply email. A read receipt has been requested.
+- Time of transmittal (EDT): [Insert Date/Time EDT]
+
+Attachments (Unclassified)
+Proprietary (unredacted)
+- Kamiwaza_RFI-RIKD-26-R-B001_NARWHAL-RED_20250918_Proprietary.pdf
+- Appendix A – Past Performance Summaries_20250918_Proprietary.pdf
+- Appendix B – Technical Whitepapers_20250918_Proprietary.pdf
+- Appendix C – Key Personnel Resumes_20250918_Proprietary.pdf
+- Appendix D – Corporate Certifications & Compliance_20250918_Proprietary.pdf
+
+Public/Redacted
+- Kamiwaza_RFI-RIKD-26-R-B001_NARWHAL-RED_20250918_Public-Redacted.pdf
+- Appendix A – Past Performance Summaries_20250918_Public-Redacted.pdf
+- Appendix B – Technical Whitepapers_20250918_Public-Redacted.pdf
+- Appendix C – Key Personnel Resumes_20250918_Public-Redacted.pdf
+- Appendix D – Corporate Certifications & Compliance_20250918_Public-Redacted.pdf
+
+Brief capability alignment (summary; details in attached response)
+- Core strengths aligned to NARWHAL RED: AI/ML-driven automated M2M RF signal processing; scalable cloud-native data pipelines; DevSecOps pipelines enabling secure rapid iteration and deployment.
+- Delivery model: Agile R&D with two-week sprints; proprietary AI acceleration framework enabling 2–4 week pilot implementations; 24/7 U.S.-based support.
+- Compliance posture: Small Business under NAICS 541715; experience supporting classified programs (up to Secret). Personnel proposed for any on-site or cleared work will be U.S. citizens and will hold, or be eligible to obtain, clearances up to TS/SCI in coordination with the Government.
+
+Certifications and compliance details (evidence provided in Appendix D)
+- CMMI (v2.0) Development: Maturity Level [Insert Level]; Appraisal ID: [Insert]; Appraisal date: [Insert]
+- ISO 9001:2015: Certificate No.: [Insert]; Registrar: [Insert]; Current through: [Insert]
+- NIST SP 800-171: SPRS score: [Insert] (as of [Insert Date]); POA&M in place for residual gaps [Yes/No]; Target score/date: [Insert]
+- SOC 2 Type II: Audit period: [Insert Start–End]; Auditor: [Insert]
+- FedRAMP: [Insert “Authorized” or “In Process”] for [Service/Offering], Impact Level [Moderate/High]; Agency/JAB sponsor: [Insert]; ATO date: [Insert]
+- Section 508: Conformance documented; VPATs available at: [Insert URL or Appendix D reference]
+- Other (if applicable): CMMC 2.0 target level and status: [Insert]
+
+Performance substantiation (references in Appendix A)
+- Representative federal efforts with CPARS and contracting POCs are provided, including:
+  - Contract No.: [Insert]; Agency/Office: [Insert]; Title: [Insert]; POP: [Insert]; CPARS: [Insert summary]; Customer POC: [Name, Title, Email, Phone]
+  - Contract No.: [Insert]; Agency/Office: [Insert]; Title: [Insert]; POP: [Insert]; CPARS: [Insert summary]; Customer POC: [Name, Title, Email, Phone]
+  - Contract No.: [Insert]; Agency/Office: [Insert]; Title: [Insert]; POP: [Insert]; CPARS: [Insert summary]; Customer POC: [Name, Title, Email, Phone]
+- Internal QA metrics and incident records supporting on-time/on-budget delivery and security performance are summarized in Appendix A with citations.
+
+Administrative notes
+- Foreign participation: Not applicable at the prime level; Kamiwaza will comply with all restrictions and personnel eligibility requirements.
+- CAC/access: We acknowledge the potential need for CAC issuance, performance at Government facilities, and access up to TS/SCI. Kamiwaza will coordinate clearance processing and facility access as required.
+- Data integrity: Hash values for attachments and a file manifest are available upon request.
+
+We appreciate the opportunity to support AFRL/RIKD’s market research for NARWHAL RED and stand ready to provide any additional information, demonstrations, or clarifications.
+
+Respectfully submitted,
+
+[Electronically signed] [REQUIRED – Insert Full Name]
+[Title], Authorized Signatory
+Kamiwaza
+Phone: [REQUIRED – Insert Phone]
+Email: [REQUIRED – Insert Email]
+Address: [REQUIRED – Insert Full Company Address]
+Date: [Insert Date], Time (EDT): [Insert Time]
+
+FOIA/Proprietary POC: [Insert Name, Title, Email, Phone]
